@@ -1,0 +1,120 @@
+cd ~/Existing/yoavgo-word2vecf-0d8e19d2f2c6/
+cut -f 2 conllu_wikipedia.txt | python scripts/vocab.py 50 > counted_vocabulary_wikipedia_50
+cat conllu_wikipedia.txt | python scripts/extract_deps.py counted_vocabulary_wikipedia_50 50 > wikipedia.dep.contexts_50
+./count_and_filter -train wikipedia.dep.contexts_50 -cvocab cv_wikipedia -wvocab wv_wikipedia -min-count 50
+./word2vecf -train wikipedia.dep.contexts_50 -wvocab wv_wikipedia -cvocab cv_wikipedia -output dim150vecs_wikipedia -size 150 -negative 15 -threads 50 -iters 10
+python ./scripts/vecs2nps.py dim150vecs_wikipedia vecs_wikipedia
+cut -f 2 conllu_reviews.txt | python scripts/vocab.py 50 > counted_vocabulary_reviews_50
+cat conllu_reviews.txt | python scripts/extract_deps.py counted_vocabulary_reviews_50 50 > reviews.dep.contexts_50
+./count_and_filter -train reviews.dep.contexts_50 -cvocab cv_reviews -wvocab wv_reviews -min-count 50
+./word2vecf -train reviews.dep.contexts_50 -wvocab wv_reviews -cvocab cv_reviews -output dim150vecs_reviews -size 150 -negative 15 -threads 50 -iters 10
+python ./scripts/vecs2nps.py dim150vecs_reviews vecs_reviews
+cd ~/Existing/dependency-based-w2v-master
+time ./word2vec -train ./preprocess/step3_threads/mdeps_reviews.txt -output reviews_output_res_150_50 -new-output extra_reviews_output_res_150_50 -weight-output weight_reviews_output_res_150_50 -read-vocab ./preprocess/step4/vocab_reviews.txt -read-weightcn ./preprocess/step4/weightcn_reviews.txt -cbow 0 -size 150 -window 5 -negative 4 -hs 0 -sample 1e-4 -weight-sample 1e-10 -threads 200 -binary 0 -iter 50 -new_operation 1
+time ./word2vec -train ./preprocess/step3_threads/mdeps_wikipedia.txt -output wikipedia_output_res_150_50 -new-output extra_wikipedia_output_res_150_50 -weight-output weight_wikipedia_output_res_150_50 -read-vocab ./preprocess/step4/vocab_wikipedia.txt -read-weightcn ./preprocess/step4/weightcn_wikipedia.txt -cbow 0 -size 150 -window 5 -negative 4 -hs 0 -sample 1e-4 -weight-sample 1e-10 -threads 200 -binary 0 -iter 50 -new_operation 1
+time ./word2vec -train ./preprocess/step3_threads/mdeps_reviews.txt -output reviews_output_res_300_10 -new-output extra_reviews_output_res_300_10 -weight-output weight_reviews_output_res_300_10 -read-vocab ./preprocess/step4/vocab_reviews.txt -read-weightcn ./preprocess/step4/weightcn_reviews.txt -cbow 0 -size 300 -window 5 -negative 4 -hs 0 -sample 1e-4 -weight-sample 1e-10 -threads 200 -binary 0 -iter 10 -new_operation 1
+time ./word2vec -train ./preprocess/step3_threads/mdeps_wikipedia.txt -output wikipedia_output_res_300_10 -new-output extra_wikipedia_output_res_300_10 -weight-output weight_wikipedia_output_res_300_10 -read-vocab ./preprocess/step4/vocab_wikipedia.txt -read-weightcn ./preprocess/step4/weightcn_wikipedia.txt -cbow 0 -size 300 -window 5 -negative 4 -hs 0 -sample 1e-4 -weight-sample 1e-10 -threads 200 -binary 0 -iter 10 -new_operation 1
+time ./word2vec -train ./preprocess/step3_threads/mdeps_reviews.txt -output reviews_output_res_300_50 -new-output extra_reviews_output_res_300_50 -weight-output weight_reviews_output_res_300_50 -read-vocab ./preprocess/step4/vocab_reviews.txt -read-weightcn ./preprocess/step4/weightcn_reviews.txt -cbow 0 -size 300 -window 5 -negative 4 -hs 0 -sample 1e-4 -weight-sample 1e-10 -threads 200 -binary 0 -iter 50 -new_operation 1
+time ./word2vec -train ./preprocess/step3_threads/mdeps_wikipedia.txt -output wikipedia_output_res_300_50 -new-output extra_wikipedia_output_res_300_50 -weight-output weight_wikipedia_output_res_300_50 -read-vocab ./preprocess/step4/vocab_wikipedia.txt -read-weightcn ./preprocess/step4/weightcn_wikipedia.txt -cbow 0 -size 300 -window 5 -negative 4 -hs 0 -sample 1e-4 -weight-sample 1e-10 -threads 200 -binary 0 -iter 50 -new_operation 1
+
+
+
+
+cut -f 2 conllu_wikipedia.txt | python scripts/vocab.py 100 > counted_vocabulary_wikipedia_100
+cat conllu_wikipedia.txt | python scripts/extract_deps.py counted_vocabulary_wikipedia_100 100 > wikipedia.dep.contexts_100
+./count_and_filter -train wikipedia.dep.contexts_100 -cvocab cv_wikipedia_100 -wvocab wv_wikipedia_100 -min-count 100
+./word2vecf -train wikipedia.dep.contexts_100 -wvocab wv_wikipedia_100 -cvocab cv_wikipedia_100 -output dim150vecs_wikipedia_100 -size 150 -negative 15 -threads 50 -iters 10
+python ./scripts/vecs2nps.py dim150vecs_wikipedia_100 vecs_wikipedia_100
+
+cut -f 2 conllu_reviews.txt | python scripts/vocab.py 100 > counted_vocabulary_reviews_100
+cat conllu_reviews.txt | python scripts/extract_deps.py counted_vocabulary_reviews_100 100 > reviews.dep.contexts_100
+./count_and_filter -train reviews.dep.contexts_100 -cvocab cv_reviews_100 -wvocab wv_reviews_100 -min-count 100
+./word2vecf -train reviews.dep.contexts_100 -wvocab wv_reviews_100 -cvocab cv_reviews_100 -output dim150vecs_reviews_100 -size 150 -negative 15 -threads 50 -iters 10
+python ./scripts/vecs2nps.py dim150vecs_reviews_100 vecs_reviews_100
+
+
+
+
+
+
+
+cd ~/Existing/Parser_CommandLine/stanford-corenlp-full-2018-10-05/
+python combine_conllu.py stanford-corenlp-full-2018-10-05/Result_Reviews_CONLLU reviews
+mv conllu_reviews.txt ~/Existing/yoavgo-word2vecf-0d8e19d2f2c6/
+
+
+time ./word2vec -train ./preprocess/step3_threads/mdeps_reviews.txt -output reviews_output_res_300_10 -new-output extra_reviews_output_res_300_10 -weight-output weight_reviews_output_res_300_10 -read-vocab ./preprocess/step4/vocab_reviews.txt -read-weightcn ./preprocess/step4/weightcn_reviews.txt -cbow 0 -size 300 -window 5 -negative 4 -hs 0 -sample 1e-4 -weight-sample 1e-10 -threads 200 -binary 0 -iter 10 -new_operation 1
+new_operation
+Starting training using file ./preprocess/step3_threads/mdeps_reviews.txt
+Vocab size: 71650
+Words in train file: 163533033
+Weights in train file: 1680
+Alpha: 0.000001  Progress: 100.00%  Words/thread/sec: 15.86k
+real    64m44.426s
+user    1712m46.716s
+sys     5m47.332s
+time ./word2vec -train ./preprocess/step3_threads/mdeps_wikipedia.txt -output wikipedia_output_res_300_10 -new-output extra_wikipedia_output_res_300_10 -weight-output weight_wikipedia_output_res_300_10 -read-vocab ./preprocess/step4/vocab_wikipedia.txt -read-weightcn ./preprocess/step4/weightcn_wikipedia.txt -cbow 0 -size 300 -window 5 -negative 4 -hs 0 -sample 1e-4 -weight-sample 1e-10 -threads 200 -binary 0 -iter 10 -new_operation 1
+new_operation
+Starting training using file ./preprocess/step3_threads/mdeps_wikipedia.txt
+Vocab size: 244910
+Words in train file: 133298109
+Weights in train file: 1272
+Alpha: 0.000001  Progress: 100.00%  Words/thread/sec: 11.79k
+real    45m15.617s
+user    1878m37.248s
+sys     6m30.120s
+time ./word2vec -train ./preprocess/step3_threads/mdeps_reviews.txt -output reviews_output_res_300_50 -new-output extra_reviews_output_res_300_50 -weight-output weight_reviews_output_res_300_50 -read-vocab ./preprocess/step4/vocab_reviews.txt -read-weightcn ./preprocess/step4/weightcn_reviews.txt -cbow 0 -size 300 -window 5 -negative 4 -hs 0 -sample 1e-4 -weight-sample 1e-10 -threads 200 -binary 0 -iter 50 -new_operation 1
+new_operation
+Starting training using file ./preprocess/step3_threads/mdeps_reviews.txt
+Vocab size: 71650
+Words in train file: 163533033
+Weights in train file: 1680
+Alpha: 0.000001  Progress: 100.00%  Words/thread/sec: 15.48k
+real    241m39.097s
+user    8770m3.504s
+sys     33m5.116s
+time ./word2vec -train ./preprocess/step3_threads/mdeps_wikipedia.txt -output wikipedia_output_res_300_50 -new-output extra_wikipedia_output_res_300_50 -weight-output weight_wikipedia_output_res_300_50 -read-vocab ./preprocess/step4/vocab_wikipedia.txt -read-weightcn ./preprocess/step4/weightcn_wikipedia.txt -cbow 0 -size 300 -window 5 -negative 4 -hs 0 -sample 1e-4 -weight-sample 1e-10 -threads 200 -binary 0 -iter 50 -new_operation 1
+new_operation
+Starting training using file ./preprocess/step3_threads/mdeps_wikipedia.txt
+Vocab size: 244910
+Words in train file: 133298109
+Weights in train file: 1272
+Alpha: 0.000001  Progress: 100.00%  Words/thread/sec: 11.73k
+real    221m54.300s
+user    9442m51.304s
+sys     29m56.608s
+
+
+
+
+##############Evaluate################
+python evaluate2.py ~/Existing/dependency-based-w2v-master/wikipedia_output_res_300_50 Existing_2018_Paper
+python evaluate2.py ~/Existing/dependency-based-w2v-master/reviews_output_res_300_50 Existing_2018_Paper
+python evaluate2.py ~/Existing/dependency-based-w2v-master/wikipedia_output_res_300_10 Existing_2018_Paper
+python evaluate2.py ~/Existing/dependency-based-w2v-master/reviews_output_res_300_10 Existing_2018_Paper
+python evaluate2.py ~/Existing/dependency-based-w2v-master/wikipedia_output_res_150_50 Existing_2018_Paper
+python evaluate2.py ~/Existing/dependency-based-w2v-master/reviews_output_res_150_50 Existing_2018_Paper
+python evaluate2.py ~/Existing/dependency-based-w2v-master/wikipedia_output_res_10 Existing_2018_Paper
+python evaluate2.py ~/Existing/dependency-based-w2v-master/reviews_output_res_10 Existing_2018_Paper
+
+
+
+
+python evaluate2.py ./WORD2VEC_GLOVE/reviews_small.txt_vectors.txt WORD2VEC_GLOVE
+python evaluate2.py ./WORD2VEC_GLOVE/reviews.txt_vectors.txt WORD2VEC_GLOVE
+python evaluate2.py ./WORD2VEC_GLOVE/reviews_word2vec_vec_15_cbow.txt WORD2VEC_GLOVE
+python evaluate2.py ./WORD2VEC_GLOVE/reviews_word2vec_vec_15_sg.txt WORD2VEC_GLOVE
+python evaluate2.py ./WORD2VEC_GLOVE/reviews_word2vec_vec_5_cbow.txt WORD2VEC_GLOVE
+python evaluate2.py ./WORD2VEC_GLOVE/reviews_word2vec_vec_5_sg.txt WORD2VEC_GLOVE
+python evaluate2.py ./WORD2VEC_GLOVE/wikipedia.txt_vectors.txt WORD2VEC_GLOVE0
+python evaluate2.py ./WORD2VEC_GLOVE/wikipedia_word2vec_vec_15_cbow.txt WORD2VEC_GLOVE0
+python evaluate2.py ./WORD2VEC_GLOVE/wikipedia_word2vec_vec_15_sg.txt WORD2VEC_GLOVE0
+python evaluate2.py ./WORD2VEC_GLOVE/wikipedia_word2vec_vec_5_cbow.txt WORD2VEC_GLOVE0
+python evaluate2.py ./WORD2VEC_GLOVE/wikipedia_word2vec_vec_5_sg.txt WORD2VEC_GLOVE0
+
+python evaluate3.py /home/cs17mtech11004/openke/Code/OpenKE/res/Reviews_NEW_OUTPUT_11_WN_DP_Unique_Useful_CO_TransE_L2_Adam_B32_E200_LR0.1_/embedding_Reviews_NEW_OUTPUT_11_WN_DP_Unique_Useful_CO.vec.json_entities_vecReviews_NEW_OUTPUT_11_WN_DP_Unique_Useful_CO.txt CO_NEW
+python evaluate3.py /home/cs17mtech11004/openke/Code/OpenKE/res/Reviews_NEW_OUTPUT_11_WN_DP_Unique_Useful_CO_Adam_E500_L0.1_D150_B32_N5_TRANSE/embedding_Reviews_NEW_OUTPUT_11_WN_DP_Unique_Useful_CO.vec.json_entities_vecReviews_NEW_OUTPUT_11_WN_DP_Unique_Useful_CO.txt CO_NEW1
+python evaluate3.py /home/cs17mtech11004/openke/Code/OpenKE/res/Reviews_NEW_OUTPUT_11_WN_Unique_CO_Adam_E500_L0.1_D150_B32_N5_TRANSE/embedding_Reviews_NEW_OUTPUT_11_WN_Unique_CO.vec.json_entities_vecReviews_NEW_OUTPUT_11_WN_Unique_CO.txt CO_NEW
+
+
+

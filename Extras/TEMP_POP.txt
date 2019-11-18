@@ -1,0 +1,26 @@
+STS
+2012_MSRpar_FYB   : 0.05516
+2012_MSRvid_FYB   : -0.14746
+2016_answer-answer_FYB   : 0.03756
+2015_answers-forums_FYB   : 0.03659
+2014_deft-forum_FYB   : 0.05253
+2014_deft-news_FYB   : 0.19508
+2013_headlines_FYB   : 0.08036
+2014_headlines_FYB   : 0.08800
+2015_headlines_FYB   : 0.18587
+2016_headlines_FYB   : 0.10637
+2014_images_FYB   : 0.02351
+2015_images_FYB   : 0.12644
+2017_track5.en-en_FYB   : 0.21678
+2013_FNWN_FYC   : 0.15145
+2013_OnWN_FYC   : 0.05893
+2014_OnWN_FYC   : 0.16174
+SICK__FYC   : 0.08616
+2012_SMTeuroparl_FYC   : 0.08321
+2015_belief_FYC   : 0.18045
+2016_plagiarism_FYC   : 0.19957
+2016_postediting_FYC   : 0.19070
+2016_question-question_FYC   : -0.08350
+2012_surprise.OnWN_FYC   : 0.28668
+2012_surprise.SMTnews_FYC   : 0.24730
+2014_tweet-news_FYC   : 0.31188

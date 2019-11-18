@@ -1,0 +1,53 @@
+STS
+FYBMSRpar2012.csv
+2012_MSRpar_FYB   : 0.02707
+FYBMSRpar2018.csv
+2018_MSRpar_FYB   : 0.05268
+FYBMSRvid2012.csv
+2012_MSRvid_FYB   : 0.27295
+FYBanswer-answer2016.csv
+2016_answer-answer_FYB   : 0.19582
+FYBanswers-forums2015.csv
+2015_answers-forums_FYB   : 0.14178
+FYBdeft-forum2014.csv
+2014_deft-forum_FYB   : 0.07176
+FYBdeft-news2014.csv
+2014_deft-news_FYB   : 0.54172
+FYBheadlines2013.csv
+2013_headlines_FYB   : 0.57711
+FYBheadlines2014.csv
+2014_headlines_FYB   : 0.53333
+FYBheadlines2015.csv
+2015_headlines_FYB   : 0.62093
+FYBheadlines2016.csv
+2016_headlines_FYB   : 0.60101
+FYBimages2014.csv
+2014_images_FYB   : 0.38568
+FYBimages2015.csv
+2015_images_FYB   : 0.52459
+FYBtrack5.en-en2017.csv
+2017_track5.en-en_FYB   : 0.48773
+FYCFNWN2013.csv
+2013_FNWN_FYC   : 0.15972
+FYCOnWN2013.csv
+2013_OnWN_FYC   : 0.25994
+FYCOnWN2014.csv
+2014_OnWN_FYC   : 0.43092
+FYCSICK.csv
+SICK__FYC   : 0.51444
+FYCSMTeuroparl2012.csv
+2012_SMTeuroparl_FYC   : 0.43354
+FYCbelief2015.csv
+2015_belief_FYC   : 0.48573
+FYCplagiarism2016.csv
+2016_plagiarism_FYC   : 0.49255
+FYCpostediting2016.csv
+2016_postediting_FYC   : 0.25966
+FYCquestion-question2016.csv
+2016_question-question_FYC   : -0.02592
+FYCsurprise.OnWN2012.csv
+2012_surprise.OnWN_FYC   : 0.53277
+FYCsurprise.SMTnews2012.csv
+2012_surprise.SMTnews_FYC   : 0.36553
+FYCtweet-news2014.csv
+2014_tweet-news_FYC   : 0.63388
